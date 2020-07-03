@@ -50,10 +50,10 @@ class ProductsOverviewPage extends StatelessWidget {
           child: GridView.builder(
             padding: const EdgeInsets.all(10),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+                crossAxisCount: 2,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                childAspectRatio: 2),
+                childAspectRatio: 3/2),
             itemBuilder: (context, index) => ProductItem(
               id: loadedProducts[index].id,
               title: loadedProducts[index].title,
