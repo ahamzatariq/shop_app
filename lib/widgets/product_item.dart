@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/pages/product_detail_page.dart';
+
 import 'package:shop_app/providers/product.dart';
 import 'package:provider/provider.dart';
 
