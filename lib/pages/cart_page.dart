@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/widgets/cart_item.dart';
 
-import '../providers/cart.dart';
+import '../providers/cart.dart' show Cart;
 
 class CartPage extends StatelessWidget {
   static const routeName = '/cart';
@@ -47,7 +47,19 @@ class CartPage extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+          SizedBox(height: 10),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (context, index) => CartItem(
+                  cart.items.values.toList()[index].id,
+                  cart.items.values.toList()[index].price,
+                  cart.items.values.toList()[index].quantity,
+                  cart.items.values.toList()[index].title),
+              itemCount: cart.items.length,
+            ),
+          ),
+          Spacer(),
         ],
       ),
     );
