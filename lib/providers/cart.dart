@@ -21,11 +21,15 @@ class Cart with ChangeNotifier {
   }
 
   int get itemCount {
-    if (_items == null) {
-      return 0;
-    } else {
-      return _items.length;
-    }
+    return _items.length;
+  }
+
+  double get totalAmount{
+    var total = 0.0;
+    _items.forEach((key, cartItem) {
+      total += cartItem.price * cartItem.quantity ;
+    });
+    return total;
   }
 
   void addItem(String productId, double price, String title) {
@@ -49,6 +53,6 @@ class Cart with ChangeNotifier {
               price: price));
       print('New item. Quantity : $itemCount');
     }
-  notifyListeners();
+    notifyListeners();
   }
 }
