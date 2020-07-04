@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/widgets/cart_item.dart';
 
+import '../widgets/cart_item.dart';
 import '../providers/cart.dart' show Cart;
 
 class CartPage extends StatelessWidget {
@@ -53,10 +53,11 @@ class CartPage extends StatelessWidget {
             child: ListView.builder(
               itemBuilder: (context, index) => CartItem(
                   cart.items.values.toList()[index].id,
+                  cart.items.keys.toList()[index],
                   cart.items.values.toList()[index].price,
                   cart.items.values.toList()[index].quantity,
                   cart.items.values.toList()[index].title),
-              itemCount: cart.items.length ,
+              itemCount: cart.items.length,
             ),
           ),
         ],
