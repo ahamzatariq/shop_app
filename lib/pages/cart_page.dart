@@ -56,10 +56,9 @@ class CartPage extends StatelessWidget {
                   cart.items.values.toList()[index].price,
                   cart.items.values.toList()[index].quantity,
                   cart.items.values.toList()[index].title),
-              itemCount: cart.items.length,
+              itemCount: cart.items.length ,
             ),
           ),
-          Spacer(),
         ],
       ),
     );
