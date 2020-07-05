@@ -31,7 +31,7 @@ class CartPage extends StatelessWidget {
                   Spacer(),
                   Chip(
                     label: Text(
-                      '\$${cart.totalAmount}',
+                      '\$${cart.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
                           color: Theme.of(context)
                               .primaryTextTheme
@@ -43,7 +43,7 @@ class CartPage extends StatelessWidget {
                   FlatButton(
                     child: Text('Order Now'),
                     onPressed: () {
-                      Provider.of<Orders>(context,listen: false).addOrder(
+                      Provider.of<Orders>(context, listen: false).addOrder(
                         cart.items.values.toList(),
                         cart.totalAmount,
                       );

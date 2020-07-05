@@ -5,12 +5,19 @@ import 'package:shop_app/pages/product_detail_page.dart';
 import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/product.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
 //  final String id;
 //  final String title;
 //  final String imageUrl;
 //
 //  ProductItem({this.id, this.title, this.imageUrl});
+
+  @override
+  _ProductItemState createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
+  var _cardIconToggle = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +52,14 @@ class ProductItem extends StatelessWidget {
           ),
           trailing: IconButton(
             color: Theme.of(context).accentColor,
-            icon: Icon(
-              Icons.add_shopping_cart,
-            ),
+            icon: Icon(_cardIconToggle
+                ? Icons.shopping_cart
+                : Icons.add_shopping_cart),
             onPressed: () {
               cart.addItem(product.id, product.price, product.title);
+              setState(() {
+                _cardIconToggle = true;
+              });
             },
           ),
           backgroundColor: Colors.black87,
