@@ -72,7 +72,7 @@ class Products with ChangeNotifier {
       price: product.price,
       id: DateTime.now().toString(),
     );
-    _items.add(product);
+    _items.add(newProduct);
 //    _items.add(value);
     notifyListeners();
   }
@@ -86,5 +86,9 @@ class Products with ChangeNotifier {
     else {
       print('...');
     }
+  }
+  void deleteProduct(String id){
+    _items.removeWhere((product) => product.id == id);
+    notifyListeners();
   }
 }
