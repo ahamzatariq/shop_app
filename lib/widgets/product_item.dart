@@ -57,6 +57,23 @@ class _ProductItemState extends State<ProductItem> {
                 : Icons.add_shopping_cart),
             onPressed: () {
               cart.addItem(product.id, product.price, product.title);
+              Scaffold.of(context).hideCurrentSnackBar();
+              Scaffold.of(context).showSnackBar(SnackBar(
+                content: Text(
+                  'Item added to cart!',
+                  textAlign: TextAlign.left,
+                ),
+                duration: Duration(seconds: 3),
+                action: SnackBarAction(
+                  onPressed: () {
+                    cart.removeSingleItem(product.id);
+                    setState(() {
+                      _cardIconToggle = false;
+                    });
+                  },
+                  label: 'UNDO',
+                ),
+              ));
               setState(() {
                 _cardIconToggle = true;
               });
