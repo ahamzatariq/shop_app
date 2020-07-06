@@ -22,7 +22,7 @@ class CartItem extends StatelessWidget {
           context: context,
           builder: (context) => AlertDialog(
             title: Text('Are you sure?'),
-            content: Text('Do you want to remove the item for the cart?'),
+            content: Text('Do you want to remove the item from the cart?'),
             actions: <Widget>[
               FlatButton(
                 child: Text('No'),
