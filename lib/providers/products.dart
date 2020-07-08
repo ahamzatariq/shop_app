@@ -141,6 +141,7 @@ class Products with ChangeNotifier {
       final productUrl =
           'https://shop-app-b0665.firebaseio.com/products/$id.json';
 
+
       await http.patch(
         productUrl,
         body: json.encode(
