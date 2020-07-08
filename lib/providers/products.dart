@@ -131,13 +131,27 @@ class Products with ChangeNotifier {
 //    return Future.value();
   }
 
-  void updateProduct(String id, Product newProduct) {
+  Future<void> updateProduct(String id, Product newProduct) async {
     final productIndex = _items.indexWhere((product) => product.id == id);
     if (productIndex >= 0) {
+      final productUrl =
+          'https://shop-app-b0665.firebaseio.com/products/$id.json';
+
+      await http.patch(
+        productUrl,
+        body: json.encode(
+          {
+            'title': newProduct.title,
+            'description': newProduct.description,
+            'imageUrl': newProduct.imageUrl,
+            'price': newProduct.price,
+          },
+        ),
+      );
       _items[productIndex] = newProduct;
       notifyListeners();
     } else {
-      print('...');
+      print('Product Update Unsuccessful');
     }
   }
 
