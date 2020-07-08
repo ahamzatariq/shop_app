@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import './product.dart';
 
 class Products with ChangeNotifier {
+  static const _url = 'https://shop-app-b0665.firebaseio.com/products.json';
+
   final List<Product> _items = [
     Product(
       id: 'p1',
@@ -67,24 +69,31 @@ class Products with ChangeNotifier {
     return _items.firstWhere((product) => product.id == id);
   }
 
-  Future<void> addProduct(Product product) {
-    const url = 'https://shop-app-b0665.firebaseio.com/products.json';
-    return http
-        .post(
-      url,
-      body: json.encode(
-        {
-          'title': product.title,
-          'description': product.description,
-          'imageUrl': product.imageUrl,
-          'price': product.price,
-          'isFavorite': product.isFavorite
-        },
-      ),
-    )
-        .then((response) {
+  Future<void> fetchAndSetProducts() async {
+    try {
+      final response = await http.get(_url);
       print(json.decode(response.body));
+    } catch (error) {
+      throw (error);
+    }
+  }
 
+  Future<void> addProduct(Product product) async {
+    try {
+      final response = await http.post(
+        _url,
+        body: json.encode(
+          {
+            'title': product.title,
+            'description': product.description,
+            'imageUrl': product.imageUrl,
+            'price': product.price,
+            'isFavorite': product.isFavorite
+          },
+        ),
+      );
+//        .then((response) {
+//    print(json.decode(response.body));
       final newProduct = Product(
         title: product.title,
         description: product.description,
@@ -92,12 +101,18 @@ class Products with ChangeNotifier {
         price: product.price,
         id: json.decode(response.body)['name'],
       );
-      _items.add(newProduct);
-      notifyListeners();
-    }).catchError((error) {
+    } catch (error) {
       print(error);
       throw error;
-    });
+    }
+//      _items.add(newProduct);
+//      notifyListeners();
+//    }).catchError((error) {
+//      print(error);
+//      throw error;
+//  }
+//
+//  );
 //    return Future.value();
   }
 
