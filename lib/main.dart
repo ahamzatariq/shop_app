@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/pages/auth_page.dart';
 import 'package:shop_app/pages/edit_product_page.dart';
 import 'package:shop_app/pages/orders_page.dart';
 import 'package:shop_app/pages/product_detail_page.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Lato',
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: ProductsOverviewPage(),
+        home: AuthPage(),
         routes: {
           ProductDetailPage.routeName: (context) => ProductDetailPage(),
           CartPage.routeName: (context) => CartPage(),
