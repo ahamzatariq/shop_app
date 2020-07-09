@@ -104,7 +104,7 @@ class _AuthCardState extends State<AuthCard> {
   var _isLoading = false;
   final _passwordController = TextEditingController();
 
-  void _showErrorDialog(String errorMessage){
+  void _showErrorDialog(String errorMessage) {
     showDialog<void>(
       context: context,
 //      barrierDismissible: barrierDismissible,

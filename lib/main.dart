@@ -35,21 +35,25 @@ class MyApp extends StatelessWidget {
           value: Auth(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.orange,
-          fontFamily: 'Lato',
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: AuthPage(),
-        routes: {
-          ProductDetailPage.routeName: (context) => ProductDetailPage(),
-          CartPage.routeName: (context) => CartPage(),
-          OrdersPage.routeName: (context) => OrdersPage(),
-          UserProductsPage.routeName: (context) => UserProductsPage(),
-          EditProductPage.routeName: (context) => EditProductPage(),
+      child: Consumer<Auth>(
+        builder: (context, auth, _) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.purple,
+              accentColor: Colors.orange,
+              fontFamily: 'Lato',
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            home: auth.isAuth ? ProductsOverviewPage() : AuthPage(),
+            routes: {
+              ProductDetailPage.routeName: (context) => ProductDetailPage(),
+              CartPage.routeName: (context) => CartPage(),
+              OrdersPage.routeName: (context) => OrdersPage(),
+              UserProductsPage.routeName: (context) => UserProductsPage(),
+              EditProductPage.routeName: (context) => EditProductPage(),
+            },
+          );
         },
       ),
     );
