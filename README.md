@@ -1,4 +1,4 @@
-Shop App
+<b>Shop App<b>
 
 An online shopping platform created on flutter that supports both IOS and Android.
 The app implements REST Api methods to form a database of a web server.
